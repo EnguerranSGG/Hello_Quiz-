@@ -22,7 +22,7 @@ class Hello_Quiz
     {
         Console.WriteLine("Quelle catégorie comptes-tu choisir ?");
         Console.WriteLine("\n");
-        Console.WriteLine("Tapes 1 pour 'Programmation' ou 2 pour 'Répliques de films cultes'.");
+        Console.WriteLine("Tapes 1 pour 'Programmation', 2 pour 'Répliques de films cultes' ou 3 pour une catégorie de quiz aléatoire.");
         Console.WriteLine("\n");
 
         var categoryChoice = Console.ReadLine();
@@ -35,8 +35,24 @@ class Hello_Quiz
         {
             SecondQuiz();
         }
-        else
-        {
+        else if (categoryChoice == "3") {
+            {
+                Random random = new Random();
+                int randomChoice = random.Next(2);
+
+                if (randomChoice == 0)
+                {
+                    Console.WriteLine("Choix aléatoire : Programmation");
+                    FirstQuiz();
+                }
+                else
+                {
+                    Console.WriteLine("Choix aléatoire : Répliques de films cultes");
+                    SecondQuiz();
+                }
+            }
+        }
+        else {
             Console.WriteLine("Si tu arrives à te planter maintenant, ça promet...");
             Console.WriteLine("\n");
             Console.WriteLine($"Aller, " + challengerName + ", on réessaye :");
