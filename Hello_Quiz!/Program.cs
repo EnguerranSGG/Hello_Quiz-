@@ -24,7 +24,6 @@ class Hello_Quiz
         Console.WriteLine("\n");
         Console.WriteLine("Tapes 1 pour 'Programmation' ou 2 pour 'Répliques de films cultes'.");
         Console.WriteLine("\n");
-        int nbQuestions = 0;
 
         var categoryChoice = Console.ReadLine();
 
@@ -52,94 +51,49 @@ class Hello_Quiz
         int score = 0;
         int nbQuestions = 0;
 
-        Console.WriteLine("Le quiz sur la programmation donc? Très bien !");
-        Console.WriteLine("\n");
-        Console.WriteLine(questionsProg[0]);
-        nbQuestions++;
-        Console.WriteLine("\n");
-        Console.WriteLine($"Tape 1 pour " + questions1Prog[0] + ", 2 pour " + questions1Prog[1] + " et 3 pour " + questions1Prog[2] + ".");
+        Console.WriteLine("Le quiz sur la programmation donc? Très bien!");
         Console.WriteLine("\n");
 
-        var reponse1Prog = Console.ReadLine();
-
-        if (reponse1Prog == answersProg[0])
+        void AskQuestion(string question, string[] choices, string answer)
         {
-            score += 1;
+            Console.WriteLine(question);
+            nbQuestions++;
             Console.WriteLine("\n");
-            Console.WriteLine("Pas mal !");
-            Console.WriteLine($"Score : " + score + "/4.");
-        }
-        else
-        {
+            Console.WriteLine($"Tape 1 pour {choices[0]}, 2 pour {choices[1]}, et 3 pour {choices[2]}.");
             Console.WriteLine("\n");
-            Console.WriteLine("Mouais...");
-        }
 
-        Console.WriteLine("\n");
-        Console.WriteLine(questionsProg[1]);
-        nbQuestions++;
-        Console.WriteLine("\n");
-        Console.WriteLine($"Tape 1 pour " + questions2Prog[0] + ", 2 pour " + questions2Prog[1] + " et 3 pour " + questions2Prog[2] + ".");
-        Console.WriteLine("\n");
+            string userResponse;
+            do
+            {
+                userResponse = Console.ReadLine();
+                if (userResponse != "1" && userResponse != "2" && userResponse != "3")
+                {
+                    Console.WriteLine("Veuillez entrer une réponse valide (1, 2 ou 3).");
+                    Console.WriteLine("\n");
+                }
+            } while (userResponse != "1" && userResponse != "2" && userResponse != "3");
 
-        var reponse2Prog = Console.ReadLine();
-
-        if (reponse2Prog == answersProg[1])
-        {
-            score += 1;
-            Console.WriteLine("\n");
-            Console.WriteLine("Pas mal !");
-            Console.WriteLine($"Score : " + score + "/4.");
-        }
-        else
-        {
-            Console.WriteLine("\n");
-            Console.WriteLine("Mouais...");
+            if (userResponse == answer)
+            {
+                score += 1;
+                Console.WriteLine("\n");
+                Console.WriteLine("Pas mal !");
+                Console.WriteLine($"Score : {score}/4.");
+                Console.WriteLine("\n");
+            }
+            else
+            {
+                Console.WriteLine("\n");
+                Console.WriteLine("Mouais...");
+                Console.WriteLine($"Score : {score}/4.");
+                Console.WriteLine("\n");
+            }
         }
 
-        Console.WriteLine("\n");
-        Console.WriteLine(questionsProg[2]);
-        nbQuestions++;
-        Console.WriteLine("\n");
-        Console.WriteLine($"Tape 1 pour " + questions3Prog[0] + ", 2 pour " + questions3Prog[1] + " et 3 pour " + questions3Prog[2] + ".");
-        Console.WriteLine("\n");
-
-        var reponse3Prog = Console.ReadLine();
-
-        if (reponse3Prog == answersProg[2])
-        {
-            score += 1;
-            Console.WriteLine("\n");
-            Console.WriteLine("Pas mal !");
-            Console.WriteLine($"Score : " + score + "/4.");
-        }
-        else
-        {
-            Console.WriteLine("\n");
-            Console.WriteLine("Mouais...");
-        }
-
-        Console.WriteLine("\n");
-        Console.WriteLine(questionsProg[3]);
-        nbQuestions++;
-        Console.WriteLine("\n");
-        Console.WriteLine($"Tape 1 pour " + questions4Prog[0] + ", 2 pour " + questions4Prog[1] + " et 3 pour " + questions4Prog[2] + ".");
-        Console.WriteLine("\n");
-
-        var reponse4Prog = Console.ReadLine();
-
-        if (reponse4Prog == answersProg[3])
-        {
-            score += 1;
-            Console.WriteLine("\n");
-            Console.WriteLine("Pas mal !");
-            Console.WriteLine($"Score : " + score + "/4.");
-        }
-        else
-        {
-            Console.WriteLine("\n");
-            Console.WriteLine("Mouais...");
-        }
+        AskQuestion(questionsProg[0], questions1Prog, answersProg[0]);
+        AskQuestion(questionsProg[1], questions2Prog, answersProg[1]);
+        AskQuestion(questionsProg[2], questions3Prog, answersProg[2]);
+        AskQuestion(questionsProg[3], questions4Prog, answersProg[3]);
 
         EndGame(score, nbQuestions);
     }
@@ -151,94 +105,49 @@ class Hello_Quiz
         int score = 0;
         int nbQuestions = 0;
 
-        Console.WriteLine("Le quiz sur la programmation donc? Très bien !");
-        Console.WriteLine("\n");
-        Console.WriteLine(questionsFlim[0]);
-        nbQuestions ++;
-        Console.WriteLine("\n");
-        Console.WriteLine($"Tape 1 pour " + questions1Flim[0] + ", 2 pour " + questions1Flim[1] + " et 3 pour " + questions1Flim[2] + ".");
+        Console.WriteLine("Le quiz sur les répliques de film ? Très bien !");
         Console.WriteLine("\n");
 
-        var reponse1Flim = Console.ReadLine();
-
-        if (reponse1Flim == answersFlim[0])
+        void AskQuestion(string question, string[] choices, string answer)
         {
-            score += 1;
+            Console.WriteLine(question);
+            nbQuestions++;
             Console.WriteLine("\n");
-            Console.WriteLine("Pas mal !");
-            Console.WriteLine($"Score : " + score + "/4.");
-        }
-        else
-        {
+            Console.WriteLine($"Tape 1 pour {choices[0]}, 2 pour {choices[1]}, et 3 pour {choices[2]}.");
             Console.WriteLine("\n");
-            Console.WriteLine("Mouais...");
+
+            string userResponse;
+
+            do
+            {
+                userResponse = Console.ReadLine();
+                if (userResponse != "1" && userResponse != "2" && userResponse != "3")
+                {
+                    Console.WriteLine("Veuillez entrer une réponse valide (1, 2 ou 3).");
+                    Console.WriteLine("\n");
+                }
+            } while (userResponse != "1" && userResponse != "2" && userResponse != "3");
+
+            if (userResponse == answer)
+            {
+                score += 1;
+                Console.WriteLine("\n");
+                Console.WriteLine("Pas mal !");
+                Console.WriteLine($"Score : {score}/4.");
+                Console.WriteLine("\n");
+            }
+            else
+            {
+                Console.WriteLine("\n");
+                Console.WriteLine("Mouais...");
+                Console.WriteLine($"Score : {score}/4.");
+                Console.WriteLine("\n");
+            }
         }
-
-        Console.WriteLine("\n");
-        Console.WriteLine(questionsFlim[1]);
-        nbQuestions++;
-        Console.WriteLine("\n");
-        Console.WriteLine($"Tape 1 pour " + questions2Flim[0] + ", 2 pour " + questions2Flim[1] + " et 3 pour " + questions2Flim[2] + ".");
-        Console.WriteLine("\n");
-
-        var reponse2Flim = Console.ReadLine();
-
-        if (reponse2Flim == answersFlim[1])
-        {
-            score += 1;
-            Console.WriteLine("\n");
-            Console.WriteLine("Pas mal !");
-            Console.WriteLine($"Score : " + score + "/4.");
-        }
-        else
-        {
-            Console.WriteLine("\n");
-            Console.WriteLine("Mouais...");
-        }
-
-        Console.WriteLine("\n");
-        Console.WriteLine(questionsFlim[2]);
-        nbQuestions++;
-        Console.WriteLine("\n");
-        Console.WriteLine($"Tape 1 pour " + questions3Flim[0] + ", 2 pour " + questions3Flim[1] + " et 3 pour " + questions3Flim[2] + ".");
-        Console.WriteLine("\n");
-
-        var reponse3Flim = Console.ReadLine();
-
-        if (reponse3Flim == answersFlim[2])
-        {
-            score += 1;
-            Console.WriteLine("\n");
-            Console.WriteLine("Pas mal !");
-            Console.WriteLine($"Score : " + score + "/4.");
-        }
-        else
-        {
-            Console.WriteLine("\n");
-            Console.WriteLine("Mouais...");
-        }
-
-        Console.WriteLine("\n");
-        Console.WriteLine(questionsFlim[3]);
-        nbQuestions++;
-        Console.WriteLine("\n");
-        Console.WriteLine($"Tape 1 pour " + questions4Flim[0] + ", 2 pour " + questions4Flim[1] + " et 3 pour " + questions4Flim[2] + ".");
-        Console.WriteLine("\n");
-
-        var reponse4Flim = Console.ReadLine();
-
-        if (reponse4Flim == answersFlim[3])
-        {
-            score += 1;
-            Console.WriteLine("\n");
-            Console.WriteLine("Pas mal !");
-            Console.WriteLine($"Score : " + score + "/4.");
-        }
-        else
-        {
-            Console.WriteLine("\n");
-            Console.WriteLine("Mouais...");
-        }
+        AskQuestion(questionsFlim[0], questions1Flim, answersFlim[0]);
+        AskQuestion(questionsFlim[1], questions2Flim, answersFlim[1]);
+        AskQuestion(questionsFlim[2], questions3Flim, answersFlim[2]);
+        AskQuestion(questionsFlim[3], questions4Flim, answersFlim[3]);
 
         EndGame(score, nbQuestions);
     }
