@@ -43,7 +43,9 @@ le CSV et suivre la même méthodologie que précedemment, quitte à copier/coll
 étapes du questionnaire où l'on demande une réponse au joueur et prévoir les cas où il rentrerait un blanc ou une réponse imprévue. (et en profiter
 pour se moquer de lui, évidemment).
 
-## Créer une section aléatoire pour le Quiz 
+## Créer une section aléatoire pour le Quiz
+
+Maintenant que l'on a un quiz "parfaitement fonctionnel" on va pourvoir ajouter un choix de Quiz aléatoire.
 
 ## Parcourir les questions (boucle)
 Pour chacune d'entre elles
