@@ -1,9 +1,8 @@
-﻿Qui est Margaret Hamilton ?;une championne de ping pong/une pilote de F1/une informaticienne de légende;3
-Qui peut accéder à un attribut protected d'une classe en C# ?;ses classes dérivées/sa mère/son père/toutes les classes du même domaine;1
-Que permet le raccourci F9 sous Visual Studio Code ?;Mettre un signet/Mettre un point d'arrêt/Naviguer vers la définition;2
-Quelle commande permet de vérifier la version installée du sdk de .net ?;dotnet -v/dotnet --list-sdks/dotnet version;2
-
-Le tout-venant a été piraté par les gosses, qu'est-ce qu'on fait?;On se risque sur le cuireux?/On se risque sur le bizarre?/On se risque sur le vitriol?;2
-De quel film vient cette réplique 'Ils se déplacent en troupeau !'?; Jurassic Park/Ted/Les deux;3
-Un peu de VO? Aller ! De quel film vient cette réplique : 'Say hello to my little friend !" ?;Pulp Fiction/Scareface/Django;2
-Dans Bullet Train, quels sont les surnoms des fréres tueurs-à-gage?;Lemon et Tangerine/Orange et Apple/La réponse D;1
+﻿1;Qui est Margaret Hamilton ?;une championne de ping pong/une pilote de F1/une informaticienne de légende;3
+1;Qui peut accéder à un attribut protected d'une classe en C# ?;ses classes dérivées/sa mère/son père/toutes les classes du même domaine;1
+1;Que permet le raccourci F9 sous Visual Studio Code ?;Mettre un signet/Mettre un point d'arrêt/Naviguer vers la définition;2
+1;Quelle commande permet de vérifier la version installée du sdk de .net ?;dotnet -v/dotnet --list-sdks/dotnet version;2
+2;Le tout-venant a été piraté par les gosses, qu'est-ce qu'on fait?;On se risque sur le cuireux?/On se risque sur le bizarre?/On se risque sur le vitriol?;2
+2;De quel film vient cette réplique 'Ils se déplacent en troupeau !'?; Jurassic Park/Ted/Les deux;3
+2;Un peu de VO? Aller ! De quel film vient cette réplique : 'Say hello to my little friend !" ?;Pulp Fiction/Scareface/Django;2
+2;Dans Bullet Train, quels sont les surnoms des fréres tueurs-à-gage?;Lemon et Tangerine/Orange et Apple/La réponse D;1

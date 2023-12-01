@@ -1,7 +1,201 @@
 ﻿using System;
 using System.IO;
+using System.Collections.Generic;
+using System.Linq;
 
-class Hello_Quiz
+
+class QuizItem
+{
+    public string Category { get; set; }
+    public string Question { get; set; }
+    public List<string> Options { get; set; }
+    public int CorrectAnswerIndex { get; set; }
+}
+
+class Program
+{
+    static void Main()
+    {
+        Console.WriteLine("Bienvenue sur Hello Quiz !");
+        Console.WriteLine("\n");
+
+        Console.WriteLine("Pour commencer, entre ton nom d'utilisateur :");
+        Console.WriteLine("\n");
+        var challengerName = Console.ReadLine();
+        Console.WriteLine("\n");
+        Console.WriteLine($"Bonjour, " + challengerName + "!");
+        Console.WriteLine("\n");
+        Choice(challengerName);
+    }
+
+    static public void Choice(string? challengerName)
+    {
+        Console.WriteLine("Quelle catégorie comptes-tu choisir ?");
+        Console.WriteLine("\n");
+        Console.WriteLine("Tapes 1 pour 'Programmation', 2 pour 'Films cultes' ou 3 pour une catégorie de quiz aléatoire.");
+        Console.WriteLine("\n");
+
+        var categoryChoice = Console.ReadLine();
+
+        if (categoryChoice == "1")
+        {
+            Quiz(categoryChoice);
+        }
+        else if (categoryChoice == "2")
+        {
+            Quiz(categoryChoice);
+        }
+        else if (categoryChoice == "3")
+        {
+            {
+                Random random = new Random();
+                int randomChoice = random.Next(2);
+
+                if (randomChoice == 0)
+                {
+                    Console.WriteLine("Choix aléatoire : Programmation");
+                    Quiz("1");
+                }
+                else
+                {
+                    Console.WriteLine("Choix aléatoire : Films cultes");
+                    Quiz("1");
+                }
+            }
+        }
+        else
+        {
+            Console.WriteLine("Si tu arrives à te planter maintenant, ça promet...");
+            Console.WriteLine("\n");
+            Console.WriteLine($"Aller, " + challengerName + ", on réessaye :");
+            Choice(challengerName);
+        }
+
+    }
+
+    static public void Quiz(string categoryChoice)
+    {
+        string filePath = @"/Users/enguerransmagghe/Projects/Hello_Quiz!/Hello_Quiz!/questions.csv";
+        string[] quizLines = System.IO.File.ReadAllLines(filePath);
+
+        List<QuizItem> quizItems = new List<QuizItem>();
+
+        foreach (string line in quizLines)
+        {
+            string[] parts = line.Split(';');
+
+            if (parts.Length == 4)
+            {
+                QuizItem quizItem = new QuizItem
+                {
+                    Category = parts[0],
+                    Question = parts[1],
+                    Options = new List<string>(parts[2].Split('/')),
+                    CorrectAnswerIndex = int.Parse(parts[3]) - 1 
+                };
+
+                quizItems.Add(quizItem);
+            }
+            else
+            {
+                Console.WriteLine($"Invalid line format: {line}");
+            }
+        }
+
+        string targetCategory = categoryChoice;
+
+        List<QuizItem> filteredItems = quizItems.Where(item => item.Category == targetCategory).ToList();
+
+        int score = 0;
+        int nbQuestions = filteredItems.Count;
+
+        Console.WriteLine("\n");
+
+        void AskQuestion(string question, List<string> options, int CorrectAnswerIndex)
+        {
+            int IntUserResponse; 
+
+            Console.WriteLine(question);
+            Console.WriteLine("\n");
+            Console.WriteLine($"Tape 1 pour {options[0]}, 2 pour {options[1]}, et 3 pour {options[2]}.");
+            Console.WriteLine("\n");
+
+            string userResponse;
+
+            do
+            {
+                userResponse = Console.ReadLine();
+                IntUserResponse = int.Parse(userResponse);
+                CorrectAnswerIndex += 1;
+
+                if (IntUserResponse != 1 && IntUserResponse != 2 && IntUserResponse != 3)
+                {
+                    Console.WriteLine("T'es pas une flèche toi hein? Comme demandé, entre une réponse valide : 1, 2 ou 3.");
+                    Console.WriteLine("\n");
+                }
+            } while (IntUserResponse != 1 && IntUserResponse != 2 && IntUserResponse != 3);
+
+            if (IntUserResponse == CorrectAnswerIndex)
+            {
+                score += 1;
+                Console.WriteLine("\n");
+                Console.WriteLine("Pas mal !");
+                Console.WriteLine($"Score : {score}/{nbQuestions}.");
+                Console.WriteLine("\n");
+            }
+            else
+            {
+                Console.WriteLine("\n");
+                Console.WriteLine("Mouais...");
+                Console.WriteLine($"Score : {score}/{nbQuestions}.");
+                Console.WriteLine("\n");
+            }
+        }
+
+        for (int i = 0; i < filteredItems.Count; i++)
+        {
+            AskQuestion(filteredItems[i].Question, filteredItems[i].Options,filteredItems[i].CorrectAnswerIndex);
+        }
+
+        EndGame(score, nbQuestions);
+    }
+
+    static public void EndGame(int score, int nbQuestions)
+    {
+        Console.WriteLine("\n");
+        Console.WriteLine("Ça y est ! C'est l'heure du verdict !");
+        Console.WriteLine("\n");
+
+        double percentage = (double)score / nbQuestions * 100;
+
+        if (percentage == 100)
+        {
+            Console.WriteLine("100%?! Mouais, ça se defend...");
+        }
+        if (percentage >= 75 && percentage < 100)
+        {
+            Console.WriteLine($"" + percentage + "%? Pas loins du tout ça ! Dommage...");
+        }
+        if (percentage > 50 && percentage < 75)
+        {
+            Console.WriteLine($"" + percentage + "%? Pas fou fou mais on va dire que ça passe...");
+        }
+        if (percentage == 50)
+        {
+            Console.WriteLine($"" + percentage + "%? C'est bien ça ? Être dans la moyenne ?");
+        }
+        if (percentage < 50 && percentage > 25)
+        {
+            Console.WriteLine($"" + percentage + "%? Même pas la moyenne ! HAHA !");
+        }
+        if (percentage <= 25)
+        {
+            Console.WriteLine("Eeeeeeeet... tu sais quoi ? Je pense que tu devrais arrêter d'essayer de faire des trucs !");
+        }
+    }
+}
+
+/* class Hello_Quiz
 {
 
     static void Main()
@@ -22,18 +216,18 @@ class Hello_Quiz
     {
         Console.WriteLine("Quelle catégorie comptes-tu choisir ?");
         Console.WriteLine("\n");
-        Console.WriteLine("Tapes 1 pour 'Programmation', 2 pour 'Répliques de films cultes' ou 3 pour une catégorie de quiz aléatoire.");
+        Console.WriteLine("Tapes 1 pour 'Programmation', 2 pour 'Films cultes' ou 3 pour une catégorie de quiz aléatoire.");
         Console.WriteLine("\n");
 
         var categoryChoice = Console.ReadLine();
 
         if (categoryChoice == "1")
         {
-            FirstQuiz();
+            //FirstQuiz();
         }
         else if (categoryChoice == "2")
         {
-            SecondQuiz();
+            //SecondQuiz();
         }
         else if (categoryChoice == "3") {
             {
@@ -43,12 +237,12 @@ class Hello_Quiz
                 if (randomChoice == 0)
                 {
                     Console.WriteLine("Choix aléatoire : Programmation");
-                    FirstQuiz();
+                    //FirstQuiz();
                 }
                 else
                 {
                     Console.WriteLine("Choix aléatoire : Répliques de films cultes");
-                    SecondQuiz();
+                    //SecondQuiz();
                 }
             }
         }
@@ -121,7 +315,7 @@ class Hello_Quiz
         int score = 0;
         int nbQuestions = 0;
 
-        Console.WriteLine("Le quiz sur les répliques de film ? Très bien !");
+        Console.WriteLine("Le quiz sur les films cultes ? Très bien !");
         Console.WriteLine("\n");
 
         void AskQuestion(string question, string[] choices, string answer)
@@ -166,7 +360,7 @@ class Hello_Quiz
         AskQuestion(questionsFlim[3], questions4Flim, answersFlim[3]);
 
         EndGame(score, nbQuestions);
-    }
+    } 
 
     static public void EndGame(int score, int nbQuestions)
     {
@@ -201,6 +395,7 @@ class Hello_Quiz
             Console.WriteLine("Eeeeeeeet... vous savez quoi ? Je pense que vous devriez arrêter d'essayer de faire des trucs !");
         }
     }
+
 
 
     static public (List<string>, List<string>, List<string>) FirstQuestionsData()
@@ -268,8 +463,7 @@ class Hello_Quiz
 
         return (questions1Flim, questions2Flim, questions3Flim, questions4Flim);
     }
-}
 
-
+}*/
 
 
