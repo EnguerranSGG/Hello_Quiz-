@@ -39,11 +39,11 @@ class Program
 
         if (categoryChoice == "1")
         {
-            Quiz(categoryChoice);
+            Quiz(challengerName, categoryChoice);
         }
         else if (categoryChoice == "2")
         {
-            Quiz(categoryChoice);
+            Quiz(challengerName, categoryChoice);
         }
         else if (categoryChoice == "3")
         {
@@ -54,12 +54,12 @@ class Program
                 if (randomChoice == 0)
                 {
                     Console.WriteLine("Choix aléatoire : Programmation");
-                    Quiz("1");
+                    Quiz(challengerName, "1");
                 }
                 else
                 {
                     Console.WriteLine("Choix aléatoire : Films cultes");
-                    Quiz("1");
+                    Quiz(challengerName, "1");
                 }
             }
         }
@@ -73,7 +73,7 @@ class Program
 
     }
 
-    static public void Quiz(string categoryChoice)
+    static public void Quiz(string? challengerName, string categoryChoice)
     {
         string filePath = @"/Users/enguerransmagghe/Projects/Hello_Quiz!/Hello_Quiz!/questions.csv";
         string[] quizLines = System.IO.File.ReadAllLines(filePath);
@@ -157,13 +157,13 @@ class Program
             AskQuestion(filteredItems[i].Question, filteredItems[i].Options,filteredItems[i].CorrectAnswerIndex);
         }
 
-        EndGame(score, nbQuestions);
+        EndGame(challengerName, score, nbQuestions);
     }
 
-    static public void EndGame(int score, int nbQuestions)
+    static public void EndGame(string? challengerName, int score, int nbQuestions)
     {
         Console.WriteLine("\n");
-        Console.WriteLine("Ça y est ! C'est l'heure du verdict !");
+        Console.WriteLine($"Ça y est " + challengerName + "! C'est l'heure du verdict !");
         Console.WriteLine("\n");
 
         double percentage = (double)score / nbQuestions * 100;
